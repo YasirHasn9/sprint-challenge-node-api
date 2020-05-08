@@ -66,4 +66,26 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/:id", async (req,res,next) => {
+    try {
+        if (!req.params.id) {
+          return res.status(404).json({
+            message: "Project not found"
+          });
+        } else {
+          const project = await projectsDb.get(req.params.id);
+          if (!project) {
+            return res.status(404).json({
+              message: "Project not found"
+            });
+          }
+        }
+    
+       await projectsDb.remove(req.params.id);
+        res.status(201).end();
+      } catch (err) {
+        next(err);
+      }
+})
+
 module.exports = router;
