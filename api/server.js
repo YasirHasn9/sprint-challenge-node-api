@@ -6,10 +6,10 @@ const projectsRouter = require("../projects/projects-server");
 
 server.use(express.json());
 server.use(helmet());
+// server.use("/", (req, res) => {
+//   res.json({ message: "Welcome to the sprint challenge" });
+// });
 
 server.use("/api/projects", projectsRouter);
-server.use("/", (req, res) => {
-  res.json({ message: "Welcome to the sprint challenge" });
-});
 
 module.exports = server;

@@ -18,11 +18,32 @@ router.post("/", async (req, res, next) => {
         message: "Name and description should filled in!"
       });
     }
-    const projects = await projectsDb.insert(req.body);
-    res.json(projects);
+    const newProject = await projectsDb.insert(req.body);
+    res.json(newProject);
   } catch (err) {
     next(err);
   }
 });
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).json({
+        message: "Project not found"
+      });
+    }
+
+    const project = await projectsDb.get(req.params.id);
+    if (!project) {
+      return res.status(404).json({
+        message: "Project not found"
+      });
+    }
+    res.status(200).json(project);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 module.exports = router;
