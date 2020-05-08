@@ -1,6 +1,9 @@
 const express = require("express");
+const server = express();
 const projectsDb = require("../data/helpers/projectModel");
-const router = express.Router();
+const router = express.Router({
+  mergeParams: true
+});
 
 router.get("/", async (req, res, next) => {
   try {
