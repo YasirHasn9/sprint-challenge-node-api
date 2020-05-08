@@ -44,6 +44,26 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+router.put("/:id", async (req, res, next) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).json({
+        message: "Project not found"
+      });
+    } else {
+      const project = await projectsDb.get(req.params.id);
+      if (!project) {
+        return res.status(404).json({
+          message: "Project not found"
+        });
+      }
+    }
 
+    const updatedProject = await projectsDb.update(req.params.id, req.body);
+    res.status(201).json(updatedProject);
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
