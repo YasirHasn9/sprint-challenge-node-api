@@ -55,4 +55,17 @@ router.put("/:id", async (req, res, next) => {
     next(err);
   }
 });
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const action = await actionsDb.get(req.params.id);
+    if (!action) {
+      return res.status(404).json({ message: "Action not found" });
+    } else {
+      await actionsDb.remove(req.params.id);
+      res.status(200).end();
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;
