@@ -41,4 +41,18 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.put("/:id", async (req, res, next) => {
+  try {
+    const action = await actionsDb.get(req.params.id);
+    if (!action) {
+      return res.status(404).json({ message: "Action not found" });
+    } else {
+      const updatedAction = await actionsDb.update(req.params.id, req.body);
+      res.status(201).json(updatedAction);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;
