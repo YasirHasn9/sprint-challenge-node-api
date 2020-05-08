@@ -12,4 +12,10 @@ server.use(helmet());
 server.use("/api/projects", projectsRouter);
 server.use("/api/actions", actionsRouter);
 
+server.use((err,res,req,next) => {
+    res.status(500).json({
+        message:"Something went wrong!"
+    })
+})
+
 module.exports = server;
