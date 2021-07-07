@@ -40,13 +40,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Router and Middlewars
+
 - [ ] Describe Middleware?
+
+In general , express is middle ware , in short , using middleware allows for
+us to add extra functionality to our app which make express more powerful
+and flexible
 
 - [ ] Describe a Resource?
 
+is can be any API , API is the way that we communicate with other computers
+through the internet
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+status 200 and we can add to it a JSON message demonstrating the successful request
+
 - [ ] How can we partition our application into sub-applications?
+
+by making it modular and divide each resource into a sub-folder`
 
 ## Minimum Viable Product
 
